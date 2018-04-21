@@ -21,8 +21,8 @@ mecab -O wakati < joongang_daily.ko.refined.sep.txt > joongang_daily.ko.refined.
 python ../tokenizer.py < ted.en.refined.sep.txt > ted.en.refined.sep.tok.txt
 mecab -O wakati --input-buffer-size=30000 < ted.ko.refined.sep.txt > ted.ko.refined.sep.tok.txt
 
-cat ./joongang_daily.en.refined.sep.tok.txt naver_endic.en.refined.tok.txt ted.en.refined.sep.tok.txt > en.tok.txt
-cat ./joongang_daily.ko.refined.sep.tok.txt naver_endic.ko.refined.tok.txt ted.ko.refined.sep.tok.txt > ko.tok.txt
+cat ./joongang_daily.en.refined.sep.tok.txt ted.en.refined.sep.tok.txt > en.tok.txt
+cat ./joongang_daily.ko.refined.sep.tok.txt ted.ko.refined.sep.tok.txt > ko.tok.txt
 
 ~/Workspace/nlp/fastText/fasttext skipgram -input ko.tok.txt -output ko.tok -dim 256 -epoch 100 -minCount 5
 ~/Workspace/nlp/fastText/fasttext skipgram -input en.tok.txt -output en.tok -dim 256 -epoch 100 -minCount 5
