@@ -1,11 +1,15 @@
 import sys, os, fileinput
 
-TMP_SRC_FN = './tmp/joongang-en'
-TMP_TGT_FN = './tmp/joongang-ko'
+DIR_PATH = './tmp/'
+TMP_SRC_FN = DIR_PATH + 'joongang-en'
+TMP_TGT_FN = DIR_PATH + 'joongang-ko'
 DICT_FN = './data/enko.dict'
 OUTPUT_FN = './data/joongang_daily.aligned.txt'
 
 if __name__ == "__main__":
+    if not os.path.exists(DIR_PATH):
+        os.mkdir(DIR_PATH)
+
     for line in fileinput.input():
         parts = line.strip().split('\t')
 
