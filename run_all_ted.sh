@@ -1555,7 +1555,7 @@ rm -f ./data/ted.aligned.txt
 ./align.ted.sh ./data/ted/Rethinking_infidelity_..._a_talk_for_anyone_who_has_ever_loved >> ./data/ted.aligned.txt
 ./align.ted.sh ./data/ted/Rethinking_the_way_we_sit_down >> ./data/ted.aligned.txt
 ./align.ted.sh ./data/ted/Rethink_the_desktop_with_BumpTop >> ./data/ted.aligned.txt
-./align.ted.sh ./data/ted/(Re)touching_lives_through_photos >> ./data/ted.aligned.txt
+./align.ted.sh "./data/ted/(Re)touching_lives_through_photos" >> ./data/ted.aligned.txt
 ./align.ted.sh ./data/ted/Retrofitting_suburbia >> ./data/ted.aligned.txt
 ./align.ted.sh ./data/ted/Revealing_the_lost_codex_of_Archimedes >> ./data/ted.aligned.txt
 ./align.ted.sh "./data/ted/Reviving_New_York's_rivers_—_with_oysters!" >> ./data/ted.aligned.txt
