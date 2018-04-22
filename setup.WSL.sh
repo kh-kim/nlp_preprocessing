@@ -1,12 +1,12 @@
-#!/bin/sh
+#!/bin/bash
 
 # Install and register conda.
 cd /tmp
 curl -o miniconda.sh -O  https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
 chmod +x ./miniconda.sh
 ./miniconda.sh -b -p ~/.conda
-export PATH="$HOME/.conda/bin:$PATH"
-echo 'PATH="$HOME/.conda/bin:$PATH' >> $HOME/.bashrc
+echo 'export PATH="$HOME/.conda/bin:$PATH"' >> $HOME/.bashrc
+source ~/.bashrc
 
 # Create a new virtual environment for pytorch and konlpy.
 conda create -y --name konlpy python=3.6 numpy pyyaml scipy ipython mkl
@@ -16,7 +16,7 @@ pip install torch jpype1 konlpy
 
 # Install Mecab.
 curl -LO https://bitbucket.org/eunjeon/mecab-ko/downloads/mecab-0.996-ko-0.9.1.tar.gz
-tar zxfv mecab-0.996-ko-0.9.1.tar.gz
+tar -zxf mecab-0.996-ko-0.9.1.tar.gz
 cd mecab-0.996-ko-0.9.1
 ./configure
 make
@@ -27,7 +27,7 @@ sudo ldconfig
 # Install mecab-ko-dic.
 cd /tmp
 curl -LO https://bitbucket.org/eunjeon/mecab-ko-dic/downloads/mecab-ko-dic-2.0.1-20150920.tar.gz
-tar -zxvf mecab-ko-dic-2.0.1-20150920.tar.gz
+tar -zxf mecab-ko-dic-2.0.1-20150920.tar.gz
 cd mecab-ko-dic-2.0.1-20150920
 ./autogen.sh
 ./configure
