@@ -58,7 +58,7 @@ def parse_argument():
     p.add_argument('--src_ref', default = None)
     p.add_argument('--tgt_ref', default = None)
     p.add_argument('--dict', required = True)
-    p.add_argument('--ratio', type = float, default = 1.2750)
+    p.add_argument('--ratio', type = float, default = 1.1966)
 
     config = p.parse_args()
 
