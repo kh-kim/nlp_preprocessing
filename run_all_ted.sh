@@ -1,3 +1,5 @@
+rm -f ./data/ted.aligned.txt
+
 ./align.ted.sh ./data/ted/1,000_TED_Talks_in_six_words >> ./data/ted.aligned.txt
 ./align.ted.sh ./data/ted/10_myths_about_psychology,_debunked >> ./data/ted.aligned.txt
 ./align.ted.sh "./data/ted/10_things_you_didn't_know_about_orgasm" >> ./data/ted.aligned.txt
