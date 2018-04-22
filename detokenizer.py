@@ -6,3 +6,5 @@ if __name__ == "__main__":
             line = line.strip().replace(' ', '').replace('▁▁', ' ').replace('▁', '').strip()
 
             sys.stdout.write(line + '\n')
+        else:
+            sys.stdout.write('\n')

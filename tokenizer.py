@@ -9,3 +9,5 @@ if __name__ == "__main__":
             tokens = t.tokenize(line.strip(), escape=False)
 
             sys.stdout.write(" ".join(tokens) + "\n")
+        else:
+            sys.stdout.write('\n')

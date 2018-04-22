@@ -31,4 +31,5 @@ if __name__ == "__main__":
                 line = re.sub(r'%s' % r[0], r[1], line.strip())
 
             sys.stdout.write(line + "\n")
-
+        else:
+            sys.stdout.write('\n')

@@ -9,25 +9,30 @@ if __name__ == "__main__":
 
     for ref in f:
         ref_tokens = ref.strip().split(' ')
-        tokens = sys.stdin.readline().strip().split(' ')
+        input_line = sys.stdin.readline().strip()
 
-        idx = 0
-        buf = []
+        if input_line != "":
+            tokens = input_line.split(' ')
 
-        # We assume that stdin has more tokens than reference input.
-        for ref_token in ref_tokens:
-            tmp_buf = []
+            idx = 0
+            buf = []
 
-            while idx < len(tokens):
-                tmp_buf += [tokens[idx]]
-                idx += 1
+            # We assume that stdin has more tokens than reference input.
+            for ref_token in ref_tokens:
+                tmp_buf = []
 
-                if ''.join(tmp_buf) == ref_token:
-                    break
+                while idx < len(tokens):
+                    tmp_buf += [tokens[idx]]
+                    idx += 1
 
-            if len(tmp_buf) > 0:
-                buf += [STR + tmp_buf[0]] + tmp_buf[1:]
+                    if ''.join(tmp_buf) == ref_token:
+                        break
 
-        sys.stdout.write(' '.join(buf) + '\n')
+                if len(tmp_buf) > 0:
+                    buf += [STR + tmp_buf[0]] + tmp_buf[1:]
+
+            sys.stdout.write(' '.join(buf) + '\n')
+        else:
+            sys.stdout.write('\n')
 
     f.close()
