@@ -36,13 +36,13 @@ cat ./joongang_daily.ko.refined.sep.tok.txt ted.ko.refined.sep.tok.txt > ko.tok.
 ~/Workspace/nlp/fastText/fasttext skipgram -input ko.tok.txt -output ko.tok -dim 256 -epoch 100 -minCount 5
 ~/Workspace/nlp/fastText/fasttext skipgram -input en.tok.txt -output en.tok -dim 256 -epoch 100 -minCount 5
 
-# get word translation model(dictionary) with word embeding vectors
-#rm -rf ~/Workspace/nlp/MUSE/dumped/debug/*
-#time python ~/Workspace/nlp/MUSE/supervised.py --src_lang en --tgt_lang ko --src_emb ./en.tok.vec --tgt_emb ./ko.tok.vec --n_refinement 5 --cuda False --emb_dim 256 --dico_train default
-#cp -f ~/Workspace/nlp/MUSE/dumped/debug/*/vectors-*.txt ./
+# get modified word vectors for each language
+rm -rf ~/Workspace/nlp/MUSE/dumped/debug/*
+time python ~/Workspace/nlp/MUSE/supervised.py --src_lang en --tgt_lang ko --src_emb ./en.tok.vec --tgt_emb ./ko.tok.vec --n_refinement 5 --cuda False --emb_dim 256 --dico_train default
+cp -f ~/Workspace/nlp/MUSE/dumped/debug/*/vectors-*.txt ./
 
-# run champollion using dictionary
-#python ../word_mt.py -src vectors-en.txt -tgt vectors-ko.txt -dict enko.dict -k 3 -thres .4
-#wc -l ./enko.dict
+# build word translation dictionary based on modified word vectors using cosine similarity
+python ../word_mt.py -src vectors-en.txt -tgt vectors-ko.txt -dict enko.dict -k 3 -thres .4
+wc -l ./enko.dict
 
 cd ../

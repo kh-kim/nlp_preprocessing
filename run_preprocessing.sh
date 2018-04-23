@@ -34,7 +34,7 @@ python ~/Workspace/nlp/subword-nmt/apply_bpe.py -c ./bpe.model < aligned.en.refi
 python ~/Workspace/nlp/subword-nmt/apply_bpe.py -c ./bpe.model < aligned.ko.refined.tok.txt > aligned.ko.refined.tok.bpe.txt
 
 # detoknization
-python ../detoknize.py < aligned.en.refined.tok.bpe.txt > aligned.en.refined.tok.bpe.detok.txt
-python ../detoknize.py < aligned.ko.refined.tok.bpe.txt > aligned.ko.refined.tok.bpe.detok.txt
+python ../detokenizer.py < aligned.en.refined.tok.bpe.txt > aligned.en.refined.tok.bpe.detok.txt
+python ../detokenizer.py < aligned.ko.refined.tok.bpe.txt > aligned.ko.refined.tok.bpe.detok.txt
 
 cd ../
