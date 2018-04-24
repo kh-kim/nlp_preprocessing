@@ -22,6 +22,10 @@ if __name__ == "__main__":
                 tmp_buf = []
 
                 while idx < len(tokens):
+                    if tokens[idx].strip() == '':
+                        idx += 1
+                        continue
+
                     tmp_buf += [tokens[idx]]
                     idx += 1
 
@@ -29,7 +33,7 @@ if __name__ == "__main__":
                         break
 
                 if len(tmp_buf) > 0:
-                    buf += [STR + tmp_buf[0]] + tmp_buf[1:]
+                    buf += [STR + tmp_buf[0].strip()] + tmp_buf[1:]
 
             sys.stdout.write(' '.join(buf) + '\n')
         else:
