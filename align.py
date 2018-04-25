@@ -3,7 +3,8 @@ import sys, argparse, os
 BIN = "/home/khkim/Workspace/nlp/champollion/bin/champollion"
 CMD = "%s -c %f -d %s %s %s %s"
 OMIT = "omitted"
-INTERMEDIATE_FN = "./tmp/tmp.txt"
+DIR_PATH = './tmp/'
+INTERMEDIATE_FN = DIR_PATH + "tmp.txt"
 
 def read_alignment(fn):
     aligns = []
@@ -65,6 +66,9 @@ def parse_argument():
     return config
 
 if __name__ == "__main__":
+    if not os.path.exists(DIR_PATH):
+         os.mkdir(DIR_PATH)
+
     config = parse_argument()
 
     if config.src_ref is None:
