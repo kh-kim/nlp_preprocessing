@@ -17,7 +17,7 @@ if __name__ == "__main__":
             continue
 
         parts[1] = parts[1].split('JoongAng Ilbo')[0]
-        if parts[2].endswith("기자"):
+        if parts[2].endswith("기자") or parts[2].endswith("위원"):
             parts[2] = (parts[2].split('.')[0]) if '.' in parts[2] else ''
 
         f = open(TMP_SRC_FN + ".txt", 'w')
