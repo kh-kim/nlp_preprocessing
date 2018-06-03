@@ -23,18 +23,28 @@ python ../tokenizer.py < ted.aligned.en.refined.txt | python ../post_tokenize.py
 mecab -O wakati --input-buffer-size=30000 < ted.aligned.ko.refined.txt | python ../post_tokenize.py ted.aligned.ko.refined.txt > ted.aligned.ko.refined.tok.txt
 
 # combine result for each language
-cat joongang_daily.aligned.en.refined.tok.txt ted.aligned.en.refined.tok.txt > aligned.en.refined.tok.txt
-cat joongang_daily.aligned.ko.refined.tok.txt ted.aligned.ko.refined.tok.txt > aligned.ko.refined.tok.txt
+#cat joongang_daily.aligned.en.refined.tok.txt ted.aligned.en.refined.tok.txt > aligned.en.refined.tok.txt
+#cat joongang_daily.aligned.ko.refined.tok.txt ted.aligned.ko.refined.tok.txt > aligned.ko.refined.tok.txt
 
 # learn subword model
-cat aligned.en.refined.tok.txt aligned.ko.refined.tok.txt | python ~/Workspace/nlp/subword-nmt/learn_bpe.py -s 32000 > ./bpe.model
+cat joongang_daily.aligned.en.refined.tok.txt joongang_daily.aligned.ko.refined.tok.txt ted.aligned.en.refined.tok.txt ted.aligned.ko.refined.tok.txt | python ~/Workspace/nlp/subword-nmt/learn_bpe.py -s 32000 > ./bpe.model
 
 # apply subword segmentation
-python ~/Workspace/nlp/subword-nmt/apply_bpe.py -c ./bpe.model < aligned.en.refined.tok.txt > aligned.en.refined.tok.bpe.txt
-python ~/Workspace/nlp/subword-nmt/apply_bpe.py -c ./bpe.model < aligned.ko.refined.tok.txt > aligned.ko.refined.tok.bpe.txt
+python ~/Workspace/nlp/subword-nmt/apply_bpe.py -c ./bpe.model < joongang_daily.aligned.en.refined.tok.txt > joongang_daily.aligned.en.refined.tok.bpe.txt
+python ~/Workspace/nlp/subword-nmt/apply_bpe.py -c ./bpe.model < joongang_daily.aligned.ko.refined.tok.txt > joongang_daily.aligned.ko.refined.tok.bpe.txt
+
+python ~/Workspace/nlp/subword-nmt/apply_bpe.py -c ./bpe.model < ted.aligned.en.refined.tok.txt > ted.aligned.en.refined.tok.bpe.txt
+python ~/Workspace/nlp/subword-nmt/apply_bpe.py -c ./bpe.model < ted.aligned.ko.refined.tok.txt > ted.aligned.ko.refined.tok.bpe.txt
 
 # detoknization
-python ../detokenizer.py < aligned.en.refined.tok.bpe.txt > aligned.en.refined.tok.bpe.detok.txt
-python ../detokenizer.py < aligned.ko.refined.tok.bpe.txt > aligned.ko.refined.tok.bpe.detok.txt
+python ../detokenizer.py < joongang_daily.aligned.en.refined.tok.bpe.txt > joongang_daily.aligned.en.refined.tok.bpe.detok.txt
+python ../detokenizer.py < joongang_daily.aligned.ko.refined.tok.bpe.txt > joongang_daily.aligned.ko.refined.tok.bpe.detok.txt
+
+python ../detokenizer.py < ted.aligned.en.refined.tok.bpe.txt > ted.aligned.en.refined.tok.bpe.detok.txt
+python ../detokenizer.py < ted.aligned.ko.refined.tok.bpe.txt > ted.aligned.ko.refined.tok.bpe.detok.txt
+
+# combine result
+cat ./joongang_daily.aligned.en.refined.tok.bpe.txt ted.aligned.en.refined.tok.bpe.txt > aligned.en.refined.tok.bpe.txt
+cat ./joongang_daily.aligned.ko.refined.tok.bpe.txt ted.aligned.ko.refined.tok.bpe.txt > aligned.ko.refined.tok.bpe.txt
 
 cd ../
