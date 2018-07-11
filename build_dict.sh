@@ -42,7 +42,10 @@ time python ~/Workspace/nlp/MUSE/supervised.py --src_lang en --tgt_lang ko --src
 cp -f ~/Workspace/nlp/MUSE/dumped/debug/*/vectors-*.txt ./
 
 # build word translation dictionary based on modified word vectors using cosine similarity
-python ../word_mt.py -src vectors-en.txt -tgt vectors-ko.txt -dict enko.dict -k 3 -thres .4
+python ../word_mt.py -src vectors-en.txt -tgt vectors-ko.txt -dict enko.auto.dict -k 3 -thres .4
+wc -l ./enko.auto.dict
+
+cat enko.prev.dict enko.auto.dict | sort | uniq > enko.dict
 wc -l ./enko.dict
 
 cd ../
