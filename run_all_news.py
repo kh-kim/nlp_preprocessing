@@ -1,10 +1,10 @@
 import sys, os, fileinput
 
 DIR_PATH = './tmp/'
-TMP_SRC_FN = DIR_PATH + 'joongang-en'
-TMP_TGT_FN = DIR_PATH + 'joongang-ko'
+TMP_SRC_FN = DIR_PATH + 'news-en'
+TMP_TGT_FN = DIR_PATH + 'news-ko'
 DICT_FN = './data/enko.dict'
-OUTPUT_FN = './data/joongang_daily.aligned.txt'
+OUTPUT_FN = './data/news.aligned.txt'
 
 if __name__ == "__main__":
     if not os.path.exists(DIR_PATH):
